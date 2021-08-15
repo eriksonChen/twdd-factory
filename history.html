@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>車廠代駕服務-服務記錄</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="img/192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/180.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.min.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="container" id="vue">
+    <div class="back-btn">
+      <a class="btn-floating z-depth-0 waves-effect waves-light" href="./index.html"><i class="material-icons">arrow_back</i></a>
+    </div>
+    <div class="home-btn hide-on-med-and-up">
+      <a class="btn-floating z-depth-0 waves-effect waves-light" href="javascript:;"><i class="material-icons" @click="searchBtn">search</i></a>
+    </div>
+    <div class="my-3 center-align white-text">
+      <div class="header">服務記錄</div>
+    </div>
+    
+    <div class="card hide-on-med-and-down show-on-medium">
+      <div class="row px-3 pt-3 mb-0" style="display: flex; align-items: center;">
+        <div class="input-field col s5">
+          <input id="startDate" type="text" v-model="startDate" class="datepicker">
+          <label for="startDate">開始日期</label>
+        </div>
+        <div class="input-field col s5">
+          <input id="endDate" type="text" v-model="endDate" class="datepicker">
+          <label for="endDate">結束日期</label>
+        </div>
+        <button class="btn btn-info" >search</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content p-0">
+        <div class="row mb-0">
+          <div class="col s12 px-0">
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" href="#reserve">預約中</a></li>
+              <li class="tab col s3"><a href="#done">已完成</a></li>
+              <li class="tab col s3"><a href="#undone">未完成</a></li>
+            </ul>
+          </div>
+          <div class="col s12 p-3">
+            <div id="reserve" class="row">
+              <div class="col s12 my-3">
+                <p>總計 <span class="blue-text">3</span> 單</p>
+              </div>
+              <!-- 預約中 -->
+              <table class="highlight border-top border-bottom">
+                <tbody>
+                  <tr @click="reserveInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">送車服務</div></td>
+                  </tr>
+                  <tr @click="reserveInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">牽車＋送車服務</div> </td>
+                  </tr>
+                  <tr @click="reserveInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">送車服務</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 己完成 -->
+            <div id="done" class="row">
+              <div class="col s12 my-3">
+                <p>總計<span class="blue-text mx-2">4</span>單<span class="blue-text mx-2">1,200</span>元</p>
+              </div>
+              <table class="highlight border-top border-bottom">
+                <tbody>
+                  <tr @click="doneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">牽車服務</div></td>
+                  </tr>
+                  <tr @click="doneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">送車服務</div></td>
+                  </tr>
+                  <tr @click="doneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">牽車＋送車服務</div> </td>
+                  </tr>
+                  <tr @click="doneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">送車＋牽車服務</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 未完成 -->
+            <div id="undone" class="row">
+              <div class="col s12 my-3">
+                <p>12小時內取消<span class="blue-text mx-2">x</span>單，取消費<span class="red-text mx-2">1,200</span>元</p>
+                <p>駕駛抵達後取消<span class="blue-text mx-2">x</span>單，取消費<span class="red-text mx-2">800</span>元</p>
+                <p>總計<span class="blue-text mx-2">x</span>單<span class="blue-text mx-2">1,200</span>元</p>
+              </div>
+
+              <table class="highlight border-top border-bottom">
+                <tbody>
+                  <tr @click="undoneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">牽車服務</div></td>
+                  </tr>
+                  <tr @click="undoneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">送車服務</div></td>
+                  </tr>
+                  <tr @click="undoneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">牽車＋送車服務</div> </td>
+                  </tr>
+                  <tr @click="undoneInformationBtn">
+                    <td>
+                      <span class="blue-text">0912345678</span><br>2021/10/06 13:00
+                    </td>
+                    <td><div class="chip">送車＋牽車服務</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Modal search -->
+    <div id="search-modal" class="modal">
+      <div class="modal-content pb-0">
+        <h4>搜尋服務記錄</h4>
+        <div class="row mb-0">
+          <div class="input-field col s12">
+            <input id="startDate" type="text" v-model="startDate" class="datepicker">
+            <label for="startDate">開始日期</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="endDate" type="text" v-model="endDate" class="datepicker">
+            <label for="endDate">結束日期</label>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer px-3">
+        <button class="modal-close waves-effect waves-blue btn-flat">取消</button>
+        <button class="waves-effect waves-blue btn blue" @click="sendBtn">確認</button>
+      </div>
+    </div>
+    <!-- modal end -->
+    
+  </div>
+
+  <script src="js/vendor/jquery-3.2.1.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
+  <script src="js/vendor/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#vue',
+      components: {},
+      data: {
+        startDate:'',
+        endDate:''
+      },
+      mounted: async function(){
+        $('.modal').modal();
+        $('.tabs').tabs();
+
+        //設定日期選單
+        $('.datepicker').datepicker({
+          autoClose:true,
+          format: "yyyy-mm-dd",
+          i18n:{
+            months:[
+              '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'
+            ],
+            monthsShort:[
+              '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'
+            ],
+            weekdays:[
+              '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+            ],
+            weekdaysShort:[
+              '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+            ],
+            weekdaysAbbrev:[
+              '日', '一', '二', '三', '四', '五', '六'
+            ]
+          }
+        });
+      },
+      methods:{
+        searchBtn:function(){
+          $('#search-modal').modal('open');
+        },
+        sendBtn:function(){
+          console.log('send btn');
+          $('#search-modal').modal('close');
+        },
+        reserveInformationBtn:function(){
+          window.open('/reserve-information.html', '_self');
+        },
+        doneInformationBtn:function(){
+          window.open('/done-information.html', '_self');
+        },
+        undoneInformationBtn:function(){
+          window.open('/undone-information.html', '_self');
+        },
+        
+      }
+    })
+  </script>
+  
+
+</body>
+
+</html>

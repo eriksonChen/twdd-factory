@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>車廠代駕服務</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="img/192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/180.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.min.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="container" id="vue">
+    <div class="card-img">
+      <img src="./img/banner.png" alt="banner">
+    </div>
+    <div class="row my-4">
+      <div class="col s12 center-align white-text">
+        <div class="header"><span>合作廠商</span>預約代駕服務</div>
+        <div class="sub-header">
+          遵守法規具職業駕照等專業法規證照
+          <br>責任保險投保1,000萬人車代駕責任險
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m4">
+        <button type="button" class="waves-effect waves-light btn-large btn-info" @click="reserveBtn"> <i class="material-icons mr-2">call</i>預約呼叫</button>
+      </div>
+      <div class="col s12 m4">
+        <button type="button" class="waves-effect waves-light btn-large btn-info" @click="searcheBtn"><i class="material-icons mr-2">search</i>服務查詢</button>
+      </div>
+      <div class="col s12 m4" v-if="isLogin">
+        <button type="button" class="waves-effect waves-light btn-large btn-primary" @click="historyBtn"><i class="material-icons mr-2">history</i>服務紀錄</button>
+      </div>
+      <div class="col s12 m4" v-if="isLogin">
+        <button type="button" class="waves-effect waves-light btn-large btn-primary" @click="setupBtn"><i class="material-icons mr-2">settings</i>廠商設定</button>
+      </div>
+      <div class="col s12 m4" v-if="!isLogin">
+        <button type="button" class="waves-effect waves-light btn-large btn-info-outline" @click='vendorBtn'>合作廠商登入</button>
+      </div>
+    </div>
+
+    <!-- 費用說明圖片 -->
+    <div class="card-img mt-5">
+      <img src="./img/caption.png" alt="caption">
+    </div>
+
+    <!-- modal -->
+    <!-- Modal login -->
+    <div id="login-modal" class="modal">
+      <form @submit.prevent="loginBtn">
+        <div class="modal-content">
+          <h4>合作廠商登入</h4>
+          <div class="row mb-0">
+            <div class="input-field col s12 m6">
+              <input id="userName" type="text" class="validate" required>
+              <label for="userName">User name</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <input id="password" type="password" class="validate" required>
+              <label for="password">Password</label>
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer px-3">
+          <button class="modal-close waves-effect waves-blue btn-flat">取消</button>
+          <button type="submit" class="btn blue waves-effect waves-blue">登入</button>
+        </div>
+      </form>
+      
+    </div>
+    <!-- modal end -->
+  </div>
+
+  <script src="js/vendor/jquery-3.2.1.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
+  <script src="js/vendor/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#vue',
+      components: {},
+      data: {
+        isLogin:false,
+      },
+      mounted: async function(){
+        $('.modal').modal();
+        
+      },
+      methods:{
+        reserveBtn: function () {
+          window.open('./reserve.html', '_self');
+        },
+        searcheBtn: function () {
+          window.open('./search.html', '_self');
+        },
+        historyBtn: function () {
+          window.open('./history.html', '_self');
+        },
+        setupBtn: function () {
+          console.log('廠商設定');
+          window.open('./setup.html', '_self');
+        },
+        vendorBtn: function(){
+          $('#login-modal').modal('open');
+        },
+        loginBtn: function(){
+          // 登入後
+          this.isLogin = true;
+          $('#login-modal').modal('close');
+        },
+        confirmBtn: function () {
+          $('#info-modal').modal('close');
+          setTimeout(() => {
+            $('#call-modal').modal('open');
+          }, 800);
+        },
+        
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>車廠代駕服務</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="img/192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/180.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.min.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="container" id="vue">
+    <div class="back-btn">
+      <a class="btn-floating z-depth-0 waves-effect waves-light" href="./index.html"><i class="material-icons">arrow_back</i></a>
+    </div>
+    <div class="mt-5 mb-3 center-align white-text">
+      <div class="logo">
+        <img src="./img/svg/car-logo.svg" alt="twdd-logo">
+      </div>
+      <div class="header">服務查詢</div>
+    </div>
+    <form @submit.prevent="searchBtn">
+      <div class="card">
+        <div class="card-content pb-0">
+          <div class="row pt-3">
+            <div class="input-field col s12">
+              <input id="phone" placeholder="09XXXXXXXX" type="tel" maxlength="10" pattern="09\d{2}\d{6}" class="validate" autocomplete="off" required>
+              <label for="phone"> 請輸入聯絡手機</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-action right-align">
+          <button type="submit" class="waves-effect waves-blue btn blue">
+            <i class="material-icons left">search</i>查詢
+          </button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+
+  <script src="js/vendor/jquery-3.2.1.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
+  <script src="js/vendor/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#vue',
+      components: {},
+      data: {
+      },
+      mounted: async function(){
+        
+      },
+      methods:{
+        searchBtn:function(){
+          window.open('./search-Information.html', '_self');
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

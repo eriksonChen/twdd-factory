@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>車廠代駕服務-服務資訊</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="img/192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/180.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.min.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="container" id="vue">
+    <div class="back-btn">
+      <a class="btn-floating z-depth-0 waves-effect waves-light" href="./history.html"><i class="material-icons">arrow_back</i></a>
+    </div>
+    <div class="home-btn">
+      <a class="btn-floating z-depth-0 waves-effect waves-light" href="./index.html"><i class="material-icons">home</i></a>
+    </div>
+    <div class="mt-3 center-align white-text">
+      <div class="header">服務資訊</div>
+    </div>
+    
+    <div>
+      <h5 class="white-text center-align strong">聯絡手機<span class="ml-2">0918234567</span></h5>
+      <div class="card">
+        <div class="card-content">
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td width="100">服務編號：</td>
+                <td>01119</td>
+              </tr>
+              <tr>
+                <td width="100">聯絡姓名：</td>
+                <td>王大明</td>
+              </tr>
+              <tr>
+                <td width="100">預約狀態：</td>
+                <td>等候駕駛確認</td>
+              </tr>
+              <tr>
+                <td width="100">服務類型：</td>
+                <td>牽車服務</td>
+              </tr>
+              <tr>
+                <td width="100">車牌號碼：</td>
+                <td>XYZ-123</td>
+              </tr>
+              <tr>
+                <td width="100">品牌車型：</td>
+                <td>Audi A8</td>
+              </tr>
+              <tr>
+                <td width="100">牽車時間：</td>
+                <td>2021/10/06 10:00</td>
+              </tr>
+              <tr>
+                <td width="100">車主地址：</td>
+                <td>台北市內湖區瑞內湖區瑞光路335號</td>
+              </tr>
+              <tr>
+                <td width="100">廠商地址：</td>
+                <td>台灣代駕合作廠商</td>
+              </tr>
+              <tr>
+                <td width="100">服務備註：</td>
+                <td>XXXXXXXXXXXX</td>
+              </tr>
+              <tr>
+                <td width="100">駕駛姓名：</td>
+                <td>
+                  <a href="tel:0912345678" class="waves-effect waves-light btn-small btn-info">
+                    <i class="material-icons right">phone</i>陳駕駛
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action right-align">
+          <button class="waves-effect waves-blue btn-flat red-text" @click="delBtn">
+            刪除
+          </button>
+          <button class="waves-effect waves-blue btn-flat blue-text text-darken-3 ml-3" @click="editBtn()">
+            編輯
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <table class="striped">
+            <tbody>
+              <tr>
+                <td width="100">服務編號：</td>
+                <td>123456</td>
+              </tr>
+              <tr>
+                <td width="100">聯絡姓名：</td>
+                <td>XXX</td>
+              </tr>
+              <tr>
+                <td width="100">預約狀態：</td>
+                <td>等候駕駛確認</td>
+              </tr>
+              <tr>
+                <td width="100">服務類型：</td>
+                <td>牽車服務</td>
+              </tr>
+              <tr>
+                <td width="100">車牌號碼：</td>
+                <td>XYZ-123</td>
+              </tr>
+              <tr>
+                <td width="100">品牌車型：</td>
+                <td>Audi A8</td>
+              </tr>
+              <tr>
+                <td width="100">牽車時間：</td>
+                <td>2021/10/06 10:00</td>
+              </tr>
+              <tr>
+                <td width="100">車主地址：</td>
+                <td>台北市內湖區瑞內湖區瑞光路335號</td>
+              </tr>
+              <tr>
+                <td width="100">廠商地址：</td>
+                <td>台灣代駕合作廠商</td>
+              </tr>
+              <tr>
+                <td width="100">駕駛姓名：</td>
+                <td>
+                  <a href="tel:0912345678" class="waves-effect waves-light btn-small btn-info">
+                    <i class="material-icons right">phone</i>王駕駛
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td width="100">服務備註：</td>
+                <td>XXXXXXXXXXXX</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action right-align">
+          <button class="waves-effect waves-blue btn-flat red-text" @click="delBtn">
+            刪除
+          </button>
+          <button class="waves-effect waves-blue btn-flat blue-text text-darken-3 ml-3" @click="editBtn()">
+            編輯
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <!-- Modal delete -->
+    <div id="delete-modal" class="modal">
+      <div class="modal-content">
+        <h4 class="red-text">確認刪除此項服務？</h4>
+        
+        <h5>服務編號：<span>xxxxxx</span></h5>
+        
+      </div>
+      <div class="modal-footer px-3">
+        <button class="modal-close waves-effect waves-blue btn-flat">取消</button>
+        <button type="button" class="btn-flat red-text waves-effect waves-blue" @click="delTask">刪除</button>
+      </div>
+    </div>
+    <!-- Modal edit -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content pb-0">
+        <h4>服務異動</h4>
+        <div class="row mb-0">
+          <div class="input-field col s12 m6">
+            <input id="carId" value="XYZ-123" type="text" class="validate" required>
+            <label for="carId">車牌號碼</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="carType" value="Audi A8" type="text" >
+            <label for="carType">品牌車型</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="time" value="2021/10/06 10:00" type="text" class="validate" required>
+            <label for="time">送車時間</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="address" value="台北市內湖區瑞光路335號" type="text" class="validate" required>
+            <label for="address">牽車地址</label>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer px-3">
+        <button class="modal-close waves-effect waves-blue btn-flat">取消</button>
+        <button class="waves-effect waves-blue btn blue" @click="confirmBtn">確認</button>
+      </div>
+    </div>
+    <!-- Modal confirm -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content pb-0">
+        <h4>確認異動</h4>
+        <div class="row mb-0">
+          <div class="input-field col s12 m6">
+            <input value="XYZ-123" type="text" readonly>
+            <label >車牌號碼</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input value="Audi A8" type="text" readonly>
+            <label>品牌車型</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input value="2021/10/06 10:00" type="text" readonly>
+            <label>送車時間</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input value="台北市內湖區瑞光路335號" type="text" readonly>
+            <label>牽車地址</label>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer px-3">
+        <button class="modal-close waves-effect waves-blue btn-flat">返回修改</button>
+        <button class="waves-effect waves-blue btn blue" @click="saveTask">確認</button>
+      </div>
+    </div>
+    <!-- modal end -->
+    
+    
+  </div>
+
+  <script src="js/vendor/jquery-3.2.1.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
+  <script src="js/vendor/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#vue',
+      components: {},
+      data: {
+        selectTask:null,
+      },
+      mounted: async function(){
+        $('.modal').modal();
+      },
+      methods:{
+        editBtn:function(){
+          $('#edit-modal').modal('open');
+        },
+        confirmBtn:function(){
+          $('#confirm-modal').modal('open');
+        },
+        saveTask:function(){
+          $('#edit-modal').modal('close');
+          $('#confirm-modal').modal('close');
+        },
+        delBtn:function(e){
+          $('#delete-modal').modal('open');
+          this.selectTask = e.target.closest('.card');
+        },
+        delTask:function(){
+          $('#delete-modal').modal('close');
+          this.selectTask.remove();
+        }
+        
+        
+      }
+    })
+  </script>
+  
+
+</body>
+
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>車廠代駕服務</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="img/192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/180.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.min.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="container" id="vue">
+    <div class="back-btn">
+      <a class="btn-floating z-depth-0 waves-effect waves-light" href="./index.html"><i class="material-icons">arrow_back</i></a>
+    </div>
+    <div class="mt-5 mb-3 center-align white-text">
+      <div class="logo">
+        <img src="./img/svg/car-logo.svg" alt="twdd-logo">
+      </div>
+      <div class="header"><span>合作廠商</span>預約代駕服務</div>
+    </div>
+    <div class="form">
+      <div class="row">
+        <div class="card col s12" style="overflow: inherit;">
+          <div class="card-content">
+            <div class="row pt-3 mb-0">
+              <div class="input-field col s12 m6">
+                <input id="phone" type="tel" maxlength="10" pattern="09\d{2}\d{6}" class="validate" autocomplete="off" required>
+                <label class="required" for="phone">聯絡手機</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="name" type="text" class="validate" autocomplete="off" required>
+                <label class="required" for="name">聯絡姓名</label>
+              </div>
+              <div class="form-group col s12 m6">
+                <label class="">服務類型</label>
+                <select v-model="serviceType" class="browser-default">
+                  <option value="" disabled>請選擇服務類型</option>
+                  <option v-for="item in serviceTypeOptions" v-bind:value="item">{{item}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 牽車 -->
+        <div class="card col s12" v-if="serviceType==='牽車'">
+          <div class="card-content">
+            <div class="card-title strong">牽車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber" type="text" class="validate" required>
+                <label class="required" for="carNumber">車牌號碼</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand" type="text" class="validate">
+                <label for="brand">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="pickupDate" type="text" class="validate datepicker" required>
+                <label class="required" for="pickupDate">牽車日期</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="pickupTime" type="text" class="validate timepicker" required>
+                <label class="required" for="pickupTime">牽車時間</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress" type="text" class="validate" required>
+                <label class="required" for="ownerAddress">車主地址</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" value="合作廠商名稱" readonly>
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note" class="materialize-textarea"></textarea>
+                <label for="note">服務備註</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 送車 -->
+        <div class="card col s12" v-if="serviceType==='送車'">
+          <div class="card-content">
+            <div class="card-title strong">送車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber" type="text" class="validate" required>
+                <label class="required" for="carNumber">車牌號碼 </label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand" type="text" class="validate">
+                <label for="brand">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnDate" type="text" class="validate datepicker" required>
+                <label class="required" for="returnDate">送車日期</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnTime" type="text" class="validate timepicker" required>
+                <label class="required" for="returnTime">送車時間</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress" type="text" class="validate" required>
+                <label class="required" for="ownerAddress">車主地址</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" value="合作廠商名稱" readonly>
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note" class="materialize-textarea"></textarea>
+                <label for="note">服務備註</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 牽車＋送車 -->
+        <div class="card col s12" v-if="serviceType==='牽車＋送車'">
+          <div class="card-content">
+            <div class="card-title strong">牽車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber" type="text" class="validate" required>
+                <label class="required" for="carNumber">車牌號碼</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand" type="text" class="validate">
+                <label for="brand">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="pickupDate" type="text" class="validate datepicker" required>
+                <label class="required" for="pickupDate">牽車日期</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="pickupTime" type="text" class="validate timepicker" required>
+                <label class="required" for="pickupTime">牽車時間</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress" type="text" v-model="address1" class="validate" required>
+                <label class="required" for="ownerAddress">車主地址</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" value="合作廠商名稱" readonly>
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note" class="materialize-textarea"></textarea>
+                <label for="note">服務備註</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card col s12" v-if="serviceType==='牽車＋送車'">
+          <div class="card-content">
+            <div class="card-title strong">送車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="returnDate" type="text" class="validate datepicker" required>
+                <label class="required" for="returnDate">送車日期</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnTime" type="text" class="validate timepicker" required>
+                <label class="required" for="returnTime">送車時間</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress2" type="text" v-model="address2" class="validate" required>
+                <label class="required" for="ownerAddress2">車主地址</label>
+                <span class="helper-text mb-2">
+                  <label>
+                    <input type="checkbox" v-model="isSame" />
+                    <span>同牽車服務車主地址</span>
+                  </label>
+                </span>
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" value="合作廠商名稱" class="validate" required>
+                <label>牽車地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note2" class="materialize-textarea"></textarea>
+                <label for="note2">服務備註</label>
+              </div>  
+            </div>
+          </div>
+        </div>
+
+        <!-- 送代步車＋牽車 -->
+        <div class="card col s12" v-if="serviceType==='送代步車＋牽車'">
+          <div class="card-content">
+            <div class="card-title strong">送代步車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber" type="text" class="validate" required>
+                <label for="carNumber" class="required">車牌號碼</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand" type="text" class="validate">
+                <label for="brand">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnDate" type="text" class="validate datepicker" required>
+                <label class="required" for="returnDate">送車日期</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnTime" type="text" class="validate timepicker" required>
+                <label class="required" for="returnTime">送車時間</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" value="合作廠商名稱" readonly>
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress" type="text" v-model="address1" class="validate" required>
+                <label class="required" for="ownerAddress">車主地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note" class="materialize-textarea"></textarea>
+                <label for="note">服務備註</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col s12" v-if="serviceType==='送代步車＋牽車'">
+          <div class="card-content">
+            <div class="card-title strong">牽車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber2" type="text" class="validate" required>
+                <label for="carNumber2" class="required">車牌號碼</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand2" type="text" class="validate">
+                <label for="brand2">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress2" type="text" v-model="address2" class="validate" required>
+                <label class="required" for="ownerAddress2">車主地址</label>
+                <span class="helper-text mb-2">
+                  <label>
+                    <input type="checkbox" v-model="isSame" />
+                    <span>同牽車服務車主地址</span>
+                  </label>
+                </span>
+              </div>
+              <div class="input-field col s12 m6">
+                <input readonly type="text" value="合作廠商名稱">
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note2" class="materialize-textarea"></textarea>
+                <label for="note2">服務備註</label>
+              </div> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- 送車＋牽代步車 -->
+        <div class="card col s12" v-if="serviceType==='送車＋牽代步車'">
+          <div class="card-content">
+            <div class="card-title strong">送車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber" type="text" class="validate" required>
+                <label for="carNumber" class="required">車牌號碼</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand" type="text" class="validate">
+                <label for="brand">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnDate" type="text" class="validate datepicker" required>
+                <label class="required" for="returnDate">送車日期</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="returnTime" type="text" class="validate timepicker" required>
+                <label class="required" for="returnTime">送車時間</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" value="合作廠商名稱" readonly>
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="ownerAddress" type="text" v-model="address1" class="validate" required>
+                <label for="ownerAddress" class="required">車主地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note" class="materialize-textarea"></textarea>
+                <label for="note">服務備註</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col s12" v-if="serviceType==='送車＋牽代步車'">
+          <div class="card-content">
+            <div class="card-title strong">牽車服務資訊：</div>
+            <div class="row mb-0">
+              <div class="input-field col s12 m6">
+                <input id="carNumber2" type="text" class="validate" required>
+                <label for="carNumber2" class="required">車牌號碼</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="brand2" type="text" class="validate">
+                <label for="brand2">品牌車款</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input id="pickupAddress" type="text" v-model="address2" class="validate" required>
+                <label for="pickupAddress" class="required">牽車地址</label>
+                <span class="helper-text mb-2">
+                  <label>
+                    <input type="checkbox" v-model="isSame" />
+                    <span>同送車服務車主地址</span>
+                  </label>
+                </span>
+              </div>
+              <div class="input-field col s12 m6">
+                <input readonly type="text" value="合作廠商名稱">
+                <label>廠商地址</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="note2" class="materialize-textarea"></textarea>
+                <label for="note2">服務備註</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row" v-if="serviceType">
+        <div class="col s12">
+          <button type="button" class="waves-effect waves-light btn-large btn-info" @click="submitBtn">預約呼叫</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <!-- Modal infomation -->
+    <div id="info-modal" class="modal">
+      <div class="modal-content">
+        <h4>確認呼叫</h4>
+        <h5>確認是否以「 <span>09xx-xxxxxx</span> 」號碼進行預約呼叫？</h5>
+      </div>
+      <div class="modal-footer px-3">
+        <a href="javascript:;" class="modal-close waves-effect waves-blue btn-flat">取消</a>
+        <a href="javascript:;" class="waves-effect waves-blue btn blue" @click="confirmBtn">確認呼叫</a>
+      </div>
+    </div>
+    <!-- Modal call -->
+    <div id="call-modal" class="modal">
+      <div class="modal-content">
+        <h4>送出呼叫</h4>
+        <h5>台灣代駕將透過簡訊通知呼叫結果，還請多加留意。若有駕駛接單將寄送簡訊至聯絡手機。</h5>
+      </div>
+      <div class="modal-footer px-3">
+        <a href="./index.html" class="modal-close waves-effect waves-blue btn blue">了解</a>
+      </div>
+    </div>
+    <!-- modal end -->
+    
+  </div>
+
+  
+
+  <script src="js/vendor/jquery-3.2.1.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
+  <script src="js/vendor/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#vue',
+      components: {},
+      data: {
+        serviceTypeOptions:[
+          "牽車","送車","牽車＋送車","送代步車＋牽車","送車＋牽代步車"
+        ],
+        serviceType:"",
+        isSame:false,
+        address1:"",
+        address2:"",
+      },
+      watch:{
+        serviceType: function(val){
+          setTimeout(() => {
+            this.setPicker();
+          }, 10);
+        },
+        address1: function(val){
+          if(this.isSame){
+            this.address2 = val;
+            setTimeout(() => {
+              M.updateTextFields();
+            }, 100);
+          }
+        },
+        isSame: function(val){
+          if(val){
+            this.address2 = this.address1;
+            setTimeout(() => {
+              M.updateTextFields();
+            }, 100);
+            
+          }
+        }
+      },
+      mounted: async function(){
+        $('.modal').modal();
+        $('select').formSelect();
+        this.setPicker();
+      },
+      methods:{
+        submitBtn: function(){
+          $('#info-modal').modal('open');
+        },
+        confirmBtn: function () {
+          $('#info-modal').modal('close');
+          setTimeout(() => {
+            $('#call-modal').modal('open');
+          }, 800);
+        },
+        setPicker:function () {
+          M.updateTextFields();
+          $('.timepicker').timepicker({
+            // autoClose:true,
+          });
+          $('.datepicker').datepicker({
+            autoClose:true,
+            format: "yyyy-mm-dd",
+            i18n:{
+              months:[
+                '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'
+              ],
+              monthsShort:[
+                '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'
+              ],
+              weekdays:[
+                '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+              ],
+              weekdaysShort:[
+                '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+              ],
+              weekdaysAbbrev:[
+                '日', '一', '二', '三', '四', '五', '六'
+              ]
+            }
+          });
+        }
+      }
+    })
+  </script>
+  
+
+</body>
+
+</html>

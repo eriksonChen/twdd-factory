@@ -1,0 +1,42 @@
+// font style
+@import "media";
+
+body {
+    font-family:'微軟正黑體',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+$width: 960px;
+
+h1 {
+    font-size: 72px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 40px;
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 1.6;
+}
+
+h5 {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+h6 {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+
