@@ -349,7 +349,14 @@
     <div id="info-modal" class="modal">
       <div class="modal-content">
         <h4>確認呼叫</h4>
-        <h5>確認是否以「 <span>09xx-xxxxxx</span> 」號碼進行預約呼叫？</h5>
+        <h5>
+          呼叫資料如下<br>
+          聯絡手機：0912345678<br>
+          服務類型：牽車<br>
+          車牌號碼：123-qwe<br>
+          服務類型：送車車<br>
+          車牌號碼：456-rty
+        </h5>
       </div>
       <div class="modal-footer px-3">
         <a href="javascript:;" class="modal-close waves-effect waves-blue btn-flat">取消</a>
@@ -360,10 +367,21 @@
     <div id="call-modal" class="modal">
       <div class="modal-content">
         <h4>送出呼叫</h4>
-        <h5>台灣代駕將透過簡訊通知呼叫結果，還請多加留意。若有駕駛接單將寄送簡訊至聯絡手機。</h5>
+        <h5>預約成功將透過Email通知，預約失敗將透過簡訊通知，還請多加留意。</h5>
       </div>
       <div class="modal-footer px-3">
         <a href="./index.html" class="modal-close waves-effect waves-blue btn blue">了解</a>
+      </div>
+    </div>
+    <!-- Modal alert -->
+    <div id="alert-modal" class="modal">
+      <div class="modal-content">
+        <h4 class="red-text">送出失敗</h4>
+        <h5>Server API error msg</h5>
+      </div>
+      <div class="modal-footer px-3">
+        <a href="./index.html" class="modal-close waves-effect waves-blue btn-flat">回首頁</a>
+        <a href="javascript:;" class="modal-close waves-effect waves-blue btn blue">關閉</a>
       </div>
     </div>
     <!-- modal end -->
@@ -424,8 +442,12 @@
         confirmBtn: function () {
           $('#info-modal').modal('close');
           setTimeout(() => {
+            // 送出成功
             $('#call-modal').modal('open');
-          }, 800);
+
+            // 送出失敗，回傳錯誤訊息
+            // $('#alert-modal').modal('open');
+          }, 500);
         },
         setPicker:function () {
           M.updateTextFields();

@@ -217,6 +217,28 @@
         <button class="waves-effect waves-blue btn blue" @click="saveTask">確認</button>
       </div>
     </div>
+
+    <!-- Modal success -->
+    <div id="success-modal" class="modal">
+      <div class="modal-content">
+        <h4>異動送出</h4>
+        <h5>異動成功將透過Email通知，異動失敗將透過簡訊通知，還請多加留意。</h5>
+      </div>
+      <div class="modal-footer px-3">
+        <a href="javascript:;" class="modal-close waves-effect waves-blue btn blue">了解</a>
+      </div>
+    </div>
+
+    <!-- Modal alert -->
+    <div id="alert-modal" class="modal">
+      <div class="modal-content">
+        <h4 class="red-text">送出失敗</h4>
+        <h5>Server API error msg</h5>
+      </div>
+      <div class="modal-footer px-3">
+        <a href="javascript:;" class="modal-close waves-effect waves-blue btn blue">關閉</a>
+      </div>
+    </div>
     <!-- modal end -->
     
     
@@ -245,6 +267,13 @@
         saveTask:function(){
           $('#edit-modal').modal('close');
           $('#confirm-modal').modal('close');
+          setTimeout(() => {
+            // 送出成功
+            $('#success-modal').modal('open');
+
+            // 送出失敗，回傳錯誤訊息
+            // $('#alert-modal').modal('open');
+          }, 500);
         },
         delBtn:function(e){
           $('#delete-modal').modal('open');
