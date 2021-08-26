@@ -1,5 +1,11 @@
 # 台灣代駕 車廠代駕
 
+### 0826 更新下列頁面
+- 服務紀錄 [history.html](./history.html)
+- 服務資訊-預約中 [reserve-information.html](./reserve-information.html)
+- 服務資訊-查詢 [search-information.html](./search-information.html)
+- 請直接覆蓋此檔[style.min.css](./css/style.min.css)
+
 ## 相關資訊
 - [需求說明](https://twdd.myjetbrains.com/youtrack/issue/design-14)
 - [wireframe](https://o1spkl.axshare.com/#id=j8s88p&p=%E8%BB%8A%E5%BB%A0%E4%BB%A3%E9%A7%95%E5%91%BC%E5%8F%AB_v1_1)
