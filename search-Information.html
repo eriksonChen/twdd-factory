@@ -26,7 +26,7 @@
       <div class="header">服務資訊</div>
     </div>
     
-    <div>
+    <div ref="cont" id="cont">
       <h5 class="white-text center-align strong">聯絡手機<span class="ml-2">0918234567</span></h5>
       <div class="card">
         <div class="card-content">
@@ -173,7 +173,11 @@
             <label for="carType">品牌車型</label>
           </div>
           <div class="input-field col s12 m6">
-            <input id="time" value="2021/10/06 10:00" type="text" class="validate" required>
+            <input id="date" value="2021/10/06" type="text" class="validate datepicker" required>
+            <label for="date">送車日期</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="time" type="text" class="validate timepicker" value="10:00 AM" required>
             <label for="time">送車時間</label>
           </div>
           <div class="input-field col s12 m6">
@@ -202,7 +206,11 @@
             <label>品牌車型</label>
           </div>
           <div class="input-field col s12 m6">
-            <input value="2021/10/06 10:00" type="text" readonly>
+            <input value="2021/10/06" type="text" readonly>
+            <label>送車日期</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input value="10:00 AM" type="text" readonly>
             <label>送車時間</label>
           </div>
           <div class="input-field col s12 m6">
@@ -260,6 +268,7 @@
       methods:{
         editBtn:function(){
           $('#edit-modal').modal('open');
+          this.setPicker();
         },
         confirmBtn:function(){
           $('#confirm-modal').modal('open');
@@ -282,6 +291,35 @@
         delTask:function(){
           $('#delete-modal').modal('close');
           this.selectTask.remove();
+        },
+        setPicker:function () {
+          M.updateTextFields();
+          $('.timepicker').timepicker({
+            // autoClose:true,
+            container: '#cont',
+          });
+          $('.datepicker').datepicker({
+            autoClose:true,
+            format: "yyyy-mm-dd",
+            container: this.$refs.cont,
+            i18n:{
+              months:[
+                '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'
+              ],
+              monthsShort:[
+                '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'
+              ],
+              weekdays:[
+                '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+              ],
+              weekdaysShort:[
+                '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'
+              ],
+              weekdaysAbbrev:[
+                '日', '一', '二', '三', '四', '五', '六'
+              ]
+            }
+          });
         }
         
         
