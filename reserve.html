@@ -408,6 +408,7 @@
       },
       watch:{
         serviceType: function(val){
+          $('.datepicker-modal, .timepicker-modal').remove();
           setTimeout(() => {
             this.setPicker();
           }, 10);
@@ -452,11 +453,12 @@
         setPicker:function () {
           M.updateTextFields();
           $('.timepicker').timepicker({
-            // autoClose:true,
+            container: '.container',
           });
           $('.datepicker').datepicker({
             autoClose:true,
             format: "yyyy-mm-dd",
+            container: $('.container'),
             i18n:{
               months:[
                 '一月','二月','三月','四月','五月','六月','七月','八月','九月','十月',,'十一月', '十二月'

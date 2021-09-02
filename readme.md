@@ -1,5 +1,10 @@
 # 台灣代駕 車廠代駕
 
+### 0902 錯誤修正
+- 更新檔案 [reserve.html](./reserve.html)
+- timepicker, datepicker 套件新增 `container` 參數
+- 更換服務時 （serviceType）初始化套件
+
 ### 0826 更新下列頁面
 - 服務紀錄 [history.html](./history.html)
 - 服務資訊-預約中 [reserve-information.html](./reserve-information.html)
